@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        "
+>
+
+    <bean id="jmsContainer"
+          class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destinationName" value="test"/>
+        <property name="messageListener" ref="testMessageListener"/>
+        <!--手动确认消息-->
+        <property name="sessionAcknowledgeMode" value="4"/>
+    </bean>
+
+    <bean id="testMessageListener" class="com.niuzj.listener.TestMessageListener"/>
+
+
+
+
+</beans>
